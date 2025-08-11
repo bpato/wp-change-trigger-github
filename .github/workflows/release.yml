@@ -12,19 +12,19 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up variables
         shell: bash
         run: |
-          PACKAGE_NAME=${GITHUB_REPOSITORY,,}
+          PACKAGE_NAME=${GITHUB_REPOSITORY#*/}
           echo "PACKAGE_NAME=${PACKAGE_NAME}" >> $GITHUB_ENV
           echo "Package name: $PACKAGE_NAME"
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.3'
           extensions: mbstring, zip, xml
           tools: composer
 
