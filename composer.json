@@ -1,0 +1,16 @@
+{
+    "name": "bpato/wp-change-trigger-github",
+    "description": "A WordPress plugin that fires GitHub Actions automatically when content is created or updated, and can also be triggered manually from the WordPress admin panel.",
+    "autoload": {
+        "psr-4": {
+            "Bpato\\WpChangeTriggerGithub\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "bpato",
+            "email": "bpato@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
