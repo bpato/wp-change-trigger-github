@@ -1,0 +1,43 @@
+name: Release Package ZIP
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'    # dispara con tags semánticos como v1.0.0
+  workflow_dispatch:  # para lanzar manualmente
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up variables
+        shell: bash
+        run: |
+          PACKAGE_NAME=${GITHUB_REPOSITORY,,}
+          echo "PACKAGE_NAME=${PACKAGE_NAME}" >> $GITHUB_ENV
+          echo "Package name: $PACKAGE_NAME"
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, zip, xml
+          tools: composer
+
+      - name: Install dependencies with Composer
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Create ZIP package
+        run: |
+          zip -r ${{ env.PACKAGE_NAME }}.zip ./ -x '*.git*' 'tests/*' 'vendor/*' '*.github/*'
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ env.PACKAGE_NAME }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
