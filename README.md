@@ -1,6 +1,11 @@
 # wp-change-trigger-github
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub release](https://img.shields.io/github/release/bpato/wp-change-trigger-github.svg)](https://GitHub.com/bpato/wp-change-trigger-github/releases/)
+[![Github all releases](https://img.shields.io/github/downloads/bpato/wp-change-trigger-github/total.svg)](https://GitHub.com/bpato/wp-change-trigger-github/releases/)
+
 A WordPress plugin that fires GitHub Actions automatically when content is created or updated, and can also be triggered manually from the WordPress admin panel.
+
 
 ## Features
 
@@ -43,4 +48,5 @@ See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## License
 
-[MIT](LICENSE)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
