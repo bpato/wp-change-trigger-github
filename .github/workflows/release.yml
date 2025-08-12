@@ -33,7 +33,9 @@ jobs:
 
       - name: Create ZIP package
         run: |
-          zip -r ${{ env.PACKAGE_NAME }}.zip ./ -x '*.git*' 'tests/*' '*.github/*'
+          rsync -av --exclude='.git' --exclude='tests' --exclude='.github' ./ ${{ env.PACKAGE_NAME }}/
+          zip -r ${{ env.PACKAGE_NAME }}.zip ${{ env.PACKAGE_NAME }} -x '*.git*' 'tests/*' '*.github/*'
+          rm -rf ${{ env.PACKAGE_NAME }}
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2
